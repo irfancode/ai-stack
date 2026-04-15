@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Stack - Lean Local AI Infrastructure</title>
+    <meta name="description" content="A lean, local AI interface infrastructure - optimized for 8GB systems">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a26;
+            --bg-card: #16161f;
+            --accent: #00d9ff;
+            --accent-secondary: #7c3aed;
+            --accent-tertiary: #06b6d4;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #2a2a3a;
+            --success: #22c55e;
+            --warning: #eab308;
+            --error: #ef4444;
+            --gradient-primary: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%);
+            --gradient-bg: linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gradient-bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--gradient-primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            color: #fff !important;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 2rem 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #00d9ff 50%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+            border-color: var(--accent);
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            text-align: center;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(124, 58, 237, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            padding: 80px 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .architecture-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .architecture-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            overflow-x: auto;
+        }
+
+        .arch-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            min-width: 700px;
+        }
+
+        .arch-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .arch-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .arch-box.highlight {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(124, 58, 237, 0.1));
+        }
+
+        .arch-box .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .arch-box h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .arch-box .port {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .arch-connector {
+            display: flex;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        /* Quick Start */
+        .quickstart {
+            padding: 80px 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .code-header span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .code-block pre {
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.8;
+        }
+
+        .code-block code {
+            color: var(--text-primary);
+        }
+
+        .comment { color: var(--text-muted); }
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .command { color: var(--accent); }
+        .variable { color: #f78c6c; }
+
+        /* Comparison Table */
+        .comparison {
+            padding: 80px 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .comparison-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(0, 217, 255, 0.02);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success { background: rgba(34, 197, 94, 0.2); color: var(--success); }
+        .badge-warning { background: rgba(234, 179, 8, 0.2); color: var(--warning); }
+        .badge-info { background: rgba(0, 217, 255, 0.2); color: var(--accent); }
+
+        /* Tools Section */
+        .tools {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .tool-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .tool-info p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .tool-info code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background: var(--bg-tertiary);
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 1rem 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features, .quickstart, .tools {
+                padding: 60px 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="url(#grad)"/>
+                    <path d="M16 8L22 12V20L16 24L10 20V12L16 8Z" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="3" fill="white"/>
+                    <defs>
+                        <linearGradient id="grad" x1="0" y1="0" x2="32" y2="32">
+                            <stop offset="0%" stop-color="#00d9ff"/>
+                            <stop offset="100%" stop-color="#7c3aed"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                AI-Stack
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#quickstart">Quick Start</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="https://github.com/irfan-ai/ai-stack" class="nav-cta">View on GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Optimized for Apple Silicon
+        </div>
+        <h1>Lean Local AI<br>Infrastructure</h1>
+        <p>A privacy-first, containerized AI interface that runs entirely on your machine. Optimized for 8GB systems with multiple interaction modes.</p>
+        <div class="hero-buttons">
+            <a href="#quickstart" class="btn btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Get Started
+            </a>
+            <a href="#architecture" class="btn btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Documentation
+            </a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <span class="section-label">Features</span>
+        <h2 class="section-title">Everything You Need for Local AI</h2>
+        <p class="section-desc">Powerful tools and features to build, deploy, and manage AI applications entirely on your hardware.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Privacy-First</h3>
+                <p>All data stays on your machine. No cloud dependencies, no data leakage. Your conversations never leave your device.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🍎</div>
+                <h3>Apple Silicon Optimized</h3>
+                <p>Native support for M1, M2, and M3 chips with hardware-accelerated inference. Get the best performance on your Mac.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🐳</div>
+                <h3>Containerized</h3>
+                <p>Docker-based deployment for consistency across environments. Easy to set up, easy to maintain.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Multiple Interfaces</h3>
+                <p>Choose your experience: terminal CLI, lightweight web UI, or full-featured Open WebUI with RAG support.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>RAG Ready</h3>
+                <p>Built-in ChromaDB integration for retrieval-augmented generation. Upload documents and chat with your knowledge base.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">☁️</div>
+                <h3>Cloud Fallback</h3>
+                <p>Optional OpenRouter integration for cloud models. Use local models by default, switch to cloud when needed.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="architecture" id="architecture">
+        <div class="architecture-content">
+            <span class="section-label">Architecture</span>
+            <h2 class="section-title">Clean, Modular Design</h2>
+            <p class="section-desc">Built on proven open-source components with clear separation of concerns.</p>
+
+            <div class="architecture-diagram">
+                <div class="arch-diagram">
+                    <div class="arch-row">
+                        <div class="arch-box highlight">
+                            <div class="icon">🖥️</div>
+                            <h4>Your Mac</h4>
+                            <span class="port">macOS</span>
+                        </div>
+                    </div>
+                    <div class="arch-connector">↓</div>
+                    <div class="arch-row">
+                        <div class="arch-box">
+                            <div class="icon">🦙</div>
+                            <h4>Ollama</h4>
+                            <span class="port">:11434</span>
+                        </div>
+                        <div class="arch-box">
+                            <div class="icon">🐳</div>
+                            <h4>Docker/OrbStack</h4>
+                            <span class="port">Container Runtime</span>
+                        </div>
+                    </div>
+                    <div class="arch-connector">↓</div>
+                    <div class="arch-row">
+                        <div class="arch-box highlight">
+                            <div class="icon">🌐</div>
+                            <h4>Open WebUI</h4>
+                            <span class="port">:3000</span>
+                        </div>
+                        <div class="arch-box">
+                            <div class="icon">🔢</div>
+                            <h4>ChromaDB</h4>
+                            <span class="port">:8000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quickstart" id="quickstart">
+        <span class="section-label">Quick Start</span>
+        <h2 class="section-title">Get Running in Minutes</h2>
+        <p class="section-desc">Three simple steps to your local AI setup.</p>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span>Terminal</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code><span class="comment"># 1. Clone or download the repository</span>
+<span class="command">git clone</span> https://github.com/irfan-ai/ai-stack.git
+<span class="command">cd</span> ai-stack
+
+<span class="comment"># 2. Run the lean setup (downloads models)</span>
+<span class="command">./scripts/setup-lean.sh</span>
+
+<span class="comment"># 3. Start the full stack</span>
+<span class="command">./scripts/setup.sh</span></code></pre>
+        </div>
+
+        <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Choose Your Interface</h3>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span>Three Modes</span>
+            </div>
+            <pre><code><span class="comment"># Terminal Mode (~50MB RAM)</span>
+<span class="command">./scripts/local.sh</span>
+
+<span class="comment"># Simple Web UI - No Docker (~200MB RAM)</span>
+<span class="command">./scripts/web-simple.sh</span>
+
+<span class="comment"># Full WebUI with Docker (~2-3GB RAM)</span>
+<span class="command">./scripts/web.sh</span></code></pre>
+        </div>
+    </section>
+
+    <section class="comparison">
+        <div class="comparison-content">
+            <span class="section-label">Comparison</span>
+            <h2 class="section-title">Choose Your Setup</h2>
+            <p class="section-desc">Different configurations for different needs and hardware.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Setup</th>
+                        <th>RAM Usage</th>
+                        <th>Features</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Terminal Mode</strong></td>
+                        <td><span class="badge badge-success">~50MB</span></td>
+                        <td>CLI Chat, Ollama models</td>
+                        <td>Power users, quick tasks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simple Web UI</strong></td>
+                        <td><span class="badge badge-success">~200MB</span></td>
+                        <td>Browser chat, model selection</td>
+                        <td>Lightweight browsing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Full Open WebUI</strong></td>
+                        <td><span class="badge badge-warning">~2-3GB</span></td>
+                        <td>RAG, file uploads, cloud models</td>
+                        <td>Complete experience</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="tools" id="tools">
+        <span class="section-label">Management Tools</span>
+        <h2 class="section-title">Built-in Utilities</h2>
+        <p class="section-desc">Helpful scripts for managing your AI-Stack deployment.</p>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon">🔍</div>
+                <div class="tool-info">
+                    <h4>Health Monitor</h4>
+                    <p>Check service status and system resources</p>
+                    <code>./scripts/health.sh -w</code>
+                </div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📦</div>
+                <div class="tool-info">
+                    <h4>Backup & Restore</h4>
+                    <p>Backup volumes, configs, and restore when needed</p>
+                    <code>./scripts/backup.sh</code>
+                </div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">✓</div>
+                <div class="tool-info">
+                    <h4>Config Validator</h4>
+                    <p>Validate .env settings and prerequisites</p>
+                    <code>./scripts/validate.sh</code>
+                </div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📊</div>
+                <div class="tool-info">
+                    <h4>Model Management</h4>
+                    <p>Download and manage Ollama models</p>
+                    <code>ollama pull llama3.2:3b</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quickstart" id="models">
+        <span class="section-label">Models</span>
+        <h2 class="section-title">Recommended Models</h2>
+        <p class="section-desc">Optimized models for 8GB systems.</p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Size</th>
+                    <th>Best For</th>
+                    <th>Speed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>llama3.2:3b</strong></td>
+                    <td>~2GB</td>
+                    <td>General chat</td>
+                    <td>~30 tok/s</td>
+                </tr>
+                <tr>
+                    <td><strong>qwen3:1b</strong></td>
+                    <td>~1.2GB</td>
+                    <td>Quick tasks, scripts</td>
+                    <td>~50 tok/s</td>
+                </tr>
+                <tr>
+                    <td><strong>phi3:3.8b-mini</strong></td>
+                    <td>~2.4GB</td>
+                    <td>Better quality</td>
+                    <td>~25 tok/s</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">🤖 AI-Stack</div>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">A lean, local AI interface infrastructure</p>
+            <div class="footer-links">
+                <a href="https://github.com/irfan-ai/ai-stack">GitHub</a>
+                <a href="https://github.com/irfan-ai/ai-stack/issues">Issues</a>
+                <a href="https://github.com/irfan-ai/ai-stack/discussions">Discussions</a>
+            </div>
+            <p class="footer-copy">MIT License • Built with ❤️ for AI enthusiasts</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode(btn) {
+            const code = btn.closest('.code-block').querySelector('code').innerText;
+            navigator.clipboard.writeText(code);
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card, .tool-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

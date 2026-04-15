@@ -1,0 +1,20 @@
+# GitHub Pages Configuration
+title: AI-Stack
+description: A lean, local AI interface infrastructure - optimized for 8GB systems
+github:
+  repository_url: https://github.com/irfan-ai/ai-stack
+  branch: main
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - README.md
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock

@@ -1,0 +1,34 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# Lean Web UI - Lightweight Docker Compose
+# ═══════════════════════════════════════════════════════════════════════════
+# For 8GB systems, consider using ./scripts/web-simple.sh instead
+# (serves a single HTML file - zero Docker overhead)
+# ═══════════════════════════════════════════════════════════════════════════
+
+services:
+  # ── Open WebUI (Full-featured but heavier) ─────────────────────
+  # ~6GB container, 2-3GB RAM at idle
+  # Access: http://localhost:3000
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: lean-openwebui
+    ports:
+      - "3000:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - WEBUI_AUTH=false
+    volumes:
+      - lean-webui-data:/app/backend/data
+    restart: unless-stopped
+    networks:
+      - lean-network
+
+networks:
+  lean-network:
+    driver: bridge
+
+volumes:
+  lean-webui-data:
+    driver: local
