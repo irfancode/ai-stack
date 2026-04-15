@@ -211,9 +211,12 @@
             border-color: var(--accent);
         }
 
-        /* Features Grid */
-        .features {
+        /* Section Styling */
+        section {
             padding: 80px 2rem;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -238,10 +241,11 @@
         .section-desc {
             text-align: center;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 4rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
         }
 
+        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -284,15 +288,288 @@
             font-size: 0.9375rem;
         }
 
-        /* Architecture Section */
-        .architecture {
-            padding: 80px 2rem;
+        /* Prerequisites Section */
+        .prerequisites {
             background: var(--bg-secondary);
         }
 
-        .architecture-content {
-            max-width: 1000px;
-            margin: 0 auto;
+        .prereq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .prereq-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .prereq-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .prereq-card h3 .icon {
+            font-size: 1.5rem;
+        }
+
+        .prereq-list {
+            list-style: none;
+        }
+
+        .prereq-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .prereq-list li:last-child {
+            border-bottom: none;
+        }
+
+        .prereq-list .check {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .prereq-list .warn {
+            color: var(--warning);
+            font-weight: bold;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .code-header span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .code-block pre {
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.8;
+        }
+
+        .code-block code {
+            color: var(--text-primary);
+        }
+
+        .comment { color: var(--text-muted); }
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .command { color: var(--accent); }
+        .variable { color: #f78c6c; }
+        .output { color: var(--text-secondary); font-style: italic; }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(0, 217, 255, 0.02);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success { background: rgba(34, 197, 94, 0.2); color: var(--success); }
+        .badge-warning { background: rgba(234, 179, 8, 0.2); color: var(--warning); }
+        .badge-info { background: rgba(0, 217, 255, 0.2); color: var(--accent); }
+        .badge-purple { background: rgba(124, 58, 237, 0.2); color: #a78bfa; }
+
+        /* Use Cases Section */
+        .use-cases {
+            background: var(--bg-secondary);
+        }
+
+        .use-case-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .use-case-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .use-case-card .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .prompt-card {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .prompt-card h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .prompt-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .prompt-card code {
+            display: block;
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        /* Models Section */
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .model-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .model-card:hover {
+            border-color: var(--accent);
+        }
+
+        .model-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .model-card .meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .model-card .meta span {
+            color: var(--text-secondary);
+        }
+
+        .model-card .meta .highlight {
+            color: var(--accent);
+        }
+
+        .model-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .model-card .best-for {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .model-card .best-for span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Architecture */
+        .architecture {
+            background: var(--bg-secondary);
         }
 
         .architecture-diagram {
@@ -355,138 +632,11 @@
             font-size: 1.5rem;
         }
 
-        /* Quick Start */
-        .quickstart {
-            padding: 80px 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .code-block {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin: 1.5rem 0;
-            overflow: hidden;
-        }
-
-        .code-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem 1rem;
-            background: var(--bg-tertiary);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .code-header span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8125rem;
-            color: var(--text-secondary);
-        }
-
-        .copy-btn {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .copy-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .code-block pre {
-            padding: 1.5rem;
-            overflow-x: auto;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            line-height: 1.8;
-        }
-
-        .code-block code {
-            color: var(--text-primary);
-        }
-
-        .comment { color: var(--text-muted); }
-        .keyword { color: #c792ea; }
-        .string { color: #c3e88d; }
-        .command { color: var(--accent); }
-        .variable { color: #f78c6c; }
-
-        /* Comparison Table */
-        .comparison {
-            padding: 80px 2rem;
-            background: var(--bg-secondary);
-        }
-
-        .comparison-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 2rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 1rem 1.5rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .comparison-table th {
-            background: var(--bg-tertiary);
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .comparison-table tr:hover td {
-            background: rgba(0, 217, 255, 0.02);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .badge-success { background: rgba(34, 197, 94, 0.2); color: var(--success); }
-        .badge-warning { background: rgba(234, 179, 8, 0.2); color: var(--warning); }
-        .badge-info { background: rgba(0, 217, 255, 0.2); color: var(--accent); }
-
         /* Tools Section */
-        .tools {
-            padding: 80px 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-top: 3rem;
         }
 
         .tool-card {
@@ -531,6 +681,36 @@
             padding: 0.125rem 0.375rem;
             border-radius: 4px;
             color: var(--accent);
+        }
+
+        /* Troubleshooting */
+        .troubleshoot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .troubleshoot-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .troubleshoot-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--warning);
+        }
+
+        .troubleshoot-card pre {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            overflow-x: auto;
         }
 
         /* Footer */
@@ -588,29 +768,20 @@
                 font-size: 2rem;
             }
 
-            .features, .quickstart, .tools {
+            section {
                 padding: 60px 1rem;
             }
 
             .section-title {
                 font-size: 1.75rem;
             }
-        }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+            .prereq-grid,
+            .use-case-grid,
+            .models-grid,
+            .troubleshoot-grid {
+                grid-template-columns: 1fr;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.6s ease forwards;
         }
 
         /* Scrollbar */
@@ -630,6 +801,17 @@
 
         ::-webkit-scrollbar-thumb:hover {
             background: var(--text-muted);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -652,10 +834,12 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
-                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#prerequisites">Prerequisites</a></li>
                 <li><a href="#quickstart">Quick Start</a></li>
+                <li><a href="#usecases">Use Cases</a></li>
+                <li><a href="#models">Models</a></li>
                 <li><a href="#tools">Tools</a></li>
-                <li><a href="https://github.com/irfan-ai/ai-stack" class="nav-cta">View on GitHub</a></li>
+                <li><a href="https://github.com/irfancode/ai-stack" class="nav-cta">View on GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -666,62 +850,564 @@
             Optimized for Apple Silicon
         </div>
         <h1>Lean Local AI<br>Infrastructure</h1>
-        <p>A privacy-first, containerized AI interface that runs entirely on your machine. Optimized for 8GB systems with multiple interaction modes.</p>
+        <p>A privacy-first, containerized AI interface that runs entirely on your machine. Chat with documents, code, and more — all without your data leaving your computer.</p>
         <div class="hero-buttons">
-            <a href="#quickstart" class="btn btn-primary">
+            <a href="#prerequisites" class="btn btn-primary">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                 Get Started
             </a>
-            <a href="#architecture" class="btn btn-secondary">
+            <a href="#usecases" class="btn btn-secondary">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                Documentation
+                See Use Cases
             </a>
         </div>
     </section>
 
-    <section class="features" id="features">
-        <span class="section-label">Features</span>
-        <h2 class="section-title">Everything You Need for Local AI</h2>
-        <p class="section-desc">Powerful tools and features to build, deploy, and manage AI applications entirely on your hardware.</p>
+    <section id="features">
+        <div class="container">
+            <span class="section-label">Features</span>
+            <h2 class="section-title">Everything You Need for Local AI</h2>
+            <p class="section-desc">Powerful tools and features to build, deploy, and manage AI applications entirely on your hardware.</p>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Privacy-First</h3>
-                <p>All data stays on your machine. No cloud dependencies, no data leakage. Your conversations never leave your device.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy-First</h3>
+                    <p>All data stays on your machine. No cloud dependencies, no data leakage. Your conversations never leave your device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍎</div>
+                    <h3>Apple Silicon Optimized</h3>
+                    <p>Native support for M1, M2, and M3 chips with hardware-accelerated inference. Get the best performance on your Mac.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐳</div>
+                    <h3>Containerized</h3>
+                    <p>Docker-based deployment for consistency across environments. Easy to set up, easy to maintain.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Multiple Interfaces</h3>
+                    <p>Choose your experience: terminal CLI, lightweight web UI, or full-featured Open WebUI with RAG support.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>RAG Ready</h3>
+                    <p>Built-in ChromaDB integration for retrieval-augmented generation. Upload documents and chat with your knowledge base.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Fallback</h3>
+                    <p>Optional OpenRouter integration for cloud models. Use local models by default, switch to cloud when needed.</p>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🍎</div>
-                <h3>Apple Silicon Optimized</h3>
-                <p>Native support for M1, M2, and M3 chips with hardware-accelerated inference. Get the best performance on your Mac.</p>
+        </div>
+    </section>
+
+    <section id="prerequisites" class="prerequisites">
+        <div class="container">
+            <span class="section-label">Prerequisites</span>
+            <h2 class="section-title">What You Need to Get Started</h2>
+            <p class="section-desc">AI-Stack is designed to work on any Mac with sufficient resources. Here's what you need:</p>
+
+            <div class="prereq-grid">
+                <div class="prereq-card">
+                    <h3><span class="icon">💻</span> Hardware Requirements</h3>
+                    <ul class="prereq-list">
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>Mac with Apple Silicon</strong> (M1/M2/M3/M4) — Recommended for best performance
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>8GB RAM minimum</strong> — 16GB recommended for larger models
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>20GB free disk space</strong> — For models and Docker images
+                            </div>
+                        </li>
+                        <li>
+                            <span class="warn">⚠</span>
+                            <div>
+                                <strong>Intel Mac</strong> — Works but significantly slower (2-3x)
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="prereq-card">
+                    <h3><span class="icon">🔧</span> Software Requirements</h3>
+                    <ul class="prereq-list">
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>macOS 12+</strong> — Monterey or later
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>OrbStack</strong> — Lightweight Docker alternative (recommended)
+                                <br><code>brew install orbstack</code>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>Docker Desktop</strong> — Alternative to OrbStack
+                                <br><code>brew install docker</code>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>Ollama</strong> — For local model inference
+                                <br><code>brew install ollama</code>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="prereq-card">
+                    <h3><span class="icon">📦</span> Optional but Recommended</h3>
+                    <ul class="prereq-list">
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>OpenRouter API Key</strong> — For cloud model access
+                                <br><a href="https://openrouter.ai/keys" style="color: var(--accent);">Get free key →</a>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="check">✓</span>
+                            <div>
+                                <strong>Homebrew</strong> — Package manager for easy installation
+                                <br><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🐳</div>
-                <h3>Containerized</h3>
-                <p>Docker-based deployment for consistency across environments. Easy to set up, easy to maintain.</p>
+
+            <div class="code-block" style="margin-top: 3rem;">
+                <div class="code-header">
+                    <span>Quick Installation Script</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code><span class="comment"># Install all prerequisites on macOS</span>
+<span class="comment"># 1. Install Homebrew</span>
+<span class="command">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span>
+
+<span class="comment"># 2. Install OrbStack (Docker alternative)</span>
+<span class="command">brew install orbstack</span>
+
+<span class="comment"># 3. Install Ollama</span>
+<span class="command">brew install ollama</span>
+
+<span class="comment"># 4. Clone and setup AI-Stack</span>
+<span class="command">git clone</span> https://github.com/irfancode/ai-stack.git
+<span class="command">cd</span> ai-stack
+<span class="command">./scripts/setup-lean.sh</span>
+<span class="command">./scripts/setup.sh</span></code></pre>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>Multiple Interfaces</h3>
-                <p>Choose your experience: terminal CLI, lightweight web UI, or full-featured Open WebUI with RAG support.</p>
+        </div>
+    </section>
+
+    <section id="quickstart">
+        <div class="container">
+            <span class="section-label">Quick Start</span>
+            <h2 class="section-title">Get Running in Minutes</h2>
+            <p class="section-desc">Three simple steps to your local AI setup.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Terminal</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code><span class="comment"># 1. Clone or download the repository</span>
+<span class="command">git clone</span> https://github.com/irfancode/ai-stack.git
+<span class="command">cd</span> ai-stack
+
+<span class="comment"># 2. Run the lean setup (downloads models)</span>
+<span class="command">./scripts/setup-lean.sh</span>
+
+<span class="comment"># 3. Start the full stack</span>
+<span class="command">./scripts/setup.sh</span></code></pre>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>RAG Ready</h3>
-                <p>Built-in ChromaDB integration for retrieval-augmented generation. Upload documents and chat with your knowledge base.</p>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Choose Your Interface</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Mode</th>
+                        <th>RAM</th>
+                        <th>Features</th>
+                        <th>Best For</th>
+                        <th>Command</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Terminal</strong></td>
+                        <td><span class="badge badge-success">~50MB</span></td>
+                        <td>CLI Chat, fast responses</td>
+                        <td>Power users, quick tasks</td>
+                        <td><code>./scripts/local.sh</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simple Web UI</strong></td>
+                        <td><span class="badge badge-success">~200MB</span></td>
+                        <td>Browser chat, model selection</td>
+                        <td>Lightweight browsing</td>
+                        <td><code>./scripts/web-simple.sh</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Full WebUI</strong></td>
+                        <td><span class="badge badge-warning">~2-3GB</span></td>
+                        <td>RAG, file uploads, cloud models</td>
+                        <td>Complete experience</td>
+                        <td><code>./scripts/web.sh</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Access Points</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>URL</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Open WebUI</strong></td>
+                        <td><code>http://localhost:3000</code></td>
+                        <td>Full chat interface with RAG</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simple Chat</strong></td>
+                        <td><code>http://localhost:8080</code></td>
+                        <td>Lightweight chat (when running)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ChromaDB</strong></td>
+                        <td><code>http://localhost:8000</code></td>
+                        <td>Vector database (for RAG)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ollama API</strong></td>
+                        <td><code>http://localhost:11434</code></td>
+                        <td>Local model inference API</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="usecases" class="use-cases">
+        <div class="container">
+            <span class="section-label">Use Cases</span>
+            <h2 class="section-title">What Can You Do with AI-Stack?</h2>
+            <p class="section-desc">From coding assistance to document analysis, here's how different users benefit from AI-Stack.</p>
+
+            <!-- Developer Use Case -->
+            <div class="use-case-card">
+                <h3>👨‍💻 For Developers</h3>
+                <p class="subtitle">Code faster, learn new technologies, debug issues</p>
+                
+                <div class="use-case-grid">
+                    <div class="prompt-card">
+                        <h4>💡 Code Generation</h4>
+                        <p>Generate boilerplate, APIs, or complete functions</p>
+                        <code>"Write a Python function to validate email addresses using regex. Include type hints and docstring."</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>🔍 Debug Assistance</h4>
+                        <p>Paste error messages and get explanations</p>
+                        <code>"Explain this error and suggest fixes:
+TypeError: Cannot read property 'map' of undefined"</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>📖 Learn New Tech</h4>
+                        <p>Get explanations tailored to your skill level</p>
+                        <code>"Explain React hooks to a Java developer familiar with class components. Include practical examples."</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>🔄 Code Review</h4>
+                        <p>Get feedback on your code quality</p>
+                        <code>"Review this function for performance issues and suggest optimizations:
+[paste code here]"</code>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">☁️</div>
-                <h3>Cloud Fallback</h3>
-                <p>Optional OpenRouter integration for cloud models. Use local models by default, switch to cloud when needed.</p>
+
+            <!-- Writer Use Case -->
+            <div class="use-case-card">
+                <h3>✍️ For Writers & Content Creators</h3>
+                <p class="subtitle">Draft content, overcome writer's block, edit and polish</p>
+                
+                <div class="use-case-grid">
+                    <div class="prompt-card">
+                        <h4>📝 Draft Creation</h4>
+                        <p>Generate first drafts from outlines</p>
+                        <code>"Write a blog post introduction about the benefits of remote work. Tone: professional but friendly. 300 words."</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>🔄 Rewrite & Edit</h4>
+                        <p>Improve clarity and engagement</p>
+                        <code>"Rewrite this paragraph to be more concise and engaging:
+[paste paragraph]"</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>📋 Content Ideas</h4>
+                        <p>Brainstorm topics and angles</p>
+                        <code>"Generate 10 blog post ideas about productivity for remote workers."</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>📧 Professional Emails</h4>
+                        <p>Craft effective business communication</p>
+                        <code>"Write a follow-up email to a client after a successful meeting. Include action items and next steps."</code>
+                    </div>
+                </div>
             </div>
+
+            <!-- Researcher Use Case -->
+            <div class="use-case-card">
+                <h3>🔬 For Researchers & Students</h3>
+                <p class="subtitle">Summarize papers, understand concepts, organize knowledge</p>
+                
+                <div class="use-case-grid">
+                    <div class="prompt-card">
+                        <h4>📄 Document Summarization</h4>
+                        <p>Upload papers and get key points</p>
+                        <code>"Summarize this research paper in 5 bullet points, focusing on methodology and conclusions:
+[upload PDF]"</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>📚 Concept Explanation</h4>
+                        <p>Understand complex topics simply</p>
+                        <code>"Explain machine learning to a 10-year-old. Use simple analogies."</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>🔎 Literature Review</h4>
+                        <p>Compare and contrast research findings</p>
+                        <code>"Compare these two approaches to climate modeling:
+[paste abstracts]"</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>📋 Study Assistant</h4>
+                        <p>Create flashcards and quizzes</p>
+                        <code>"Create 10 flashcards to help study for a biology exam on cell division."</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Use Case -->
+            <div class="use-case-card">
+                <h3>💼 For Business Professionals</h3>
+                <p class="subtitle">Analyze data, draft reports, prepare presentations</p>
+                
+                <div class="use-case-grid">
+                    <div class="prompt-card">
+                        <h4>📊 Data Analysis</h4>
+                        <p>Generate insights from structured data</p>
+                        <code>"Analyze this sales data and identify the top 3 trends:
+[upload CSV]"</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>📋 Meeting Prep</h4>
+                        <p>Prepare agendas and talking points</p>
+                        <code>"Create a 30-minute meeting agenda for a product launch kickoff. Include stakeholders from engineering, marketing, and sales."</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>📝 Report Writing</h4>
+                        <p>Draft professional reports quickly</p>
+                        <code>"Write an executive summary for Q4 performance, highlighting key wins and areas for improvement."</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>🌐 Multilingual Support</h4>
+                        <p>Translate and localize content</p>
+                        <code>"Translate this product description to Spanish, keeping the marketing tone."</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RAG Use Case -->
+            <div class="use-case-card">
+                <h3>📚 Retrieval-Augmented Generation (RAG)</h3>
+                <p class="subtitle">Chat with your documents, knowledge bases, and files</p>
+                
+                <div class="use-case-grid">
+                    <div class="prompt-card">
+                        <h4>📄 Legal Documents</h4>
+                        <p>Query contracts and policies instantly</p>
+                        <code>"What are the key liability limitations in this contract?
+[upload PDF]"</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>📋 Company Policies</h4>
+                        <p>HR and employee handbook assistant</p>
+                        <code>"Can an employee work remotely for 3 months? Check our policy handbook.
+[upload handbook]"</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4">📊 Spreadsheets</h4>
+                        <p>Query data without Excel formulas</p>
+                        <code>"Which products had more than 20% growth this quarter?
+[upload Excel]"</code>
+                    </div>
+                    <div class="prompt-card">
+                        <h4>💻 Codebase Knowledge</h4>
+                        <p>Understand legacy code quickly</p>
+                        <code>"How does authentication work in this codebase?
+[upload code files]"</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="models">
+        <div class="container">
+            <span class="section-label">Models</span>
+            <h2 class="section-title">Choose the Right Model</h2>
+            <p class="section-desc">Different models for different needs. All run locally on your machine.</p>
+
+            <div class="models-grid">
+                <div class="model-card">
+                    <h4>llama3.2:3b</h4>
+                    <div class="meta">
+                        <span>Size: <span class="highlight">~2GB</span></span>
+                        <span>Speed: <span class="highlight">~30 tok/s</span></span>
+                    </div>
+                    <p>Balanced model with good general-purpose performance. Excellent for everyday tasks, coding, and creative writing. Best value for 8GB systems.</p>
+                    <div class="best-for">
+                        <span>Best for:</span>
+                        <span class="badge badge-success"> General Chat</span>
+                        <span class="badge badge-success"> Coding</span>
+                        <span class="badge badge-info"> Creative Writing</span>
+                    </div>
+                </div>
+
+                <div class="model-card">
+                    <h4>qwen3:1b</h4>
+                    <div class="meta">
+                        <span>Size: <span class="highlight">~1.2GB</span></span>
+                        <span>Speed: <span class="highlight">~50 tok/s</span></span>
+                    </div>
+                    <p>Ultra-fast model for quick tasks. Perfect for constrained hardware or when you need rapid responses. Great for scripts and automation.</p>
+                    <div class="best-for">
+                        <span>Best for:</span>
+                        <span class="badge badge-success"> Quick Tasks</span>
+                        <span class="badge badge-info"> Scripts</span>
+                        <span class="badge badge-warning"> Low RAM</span>
+                    </div>
+                </div>
+
+                <div class="model-card">
+                    <h4>phi3:3.8b-mini</h4>
+                    <div class="meta">
+                        <span>Size: <span class="highlight">~2.4GB</span></span>
+                        <span>Speed: <span class="highlight">~25 tok/s</span></span>
+                    </div>
+                    <p>Microsoft's efficient model with excellent reasoning capabilities. Better at complex tasks and nuanced understanding. Good quality/performance balance.</p>
+                    <div class="best-for">
+                        <span>Best for:</span>
+                        <span class="badge badge-success"> Reasoning</span>
+                        <span class="badge badge-success"> Analysis</span>
+                        <span class="badge badge-info"> Instructions</span>
+                    </div>
+                </div>
+
+                <div class="model-card">
+                    <h4>mistral:7b</h4>
+                    <div class="meta">
+                        <span>Size: <span class="highlight">~4GB</span></span>
+                        <span>Speed: <span class="highlight">~15 tok/s</span></span>
+                    </div>
+                    <p>Higher capability model for more complex tasks. Requires more RAM but provides better quality responses. Best for nuanced conversations.</p>
+                    <div class="best-for">
+                        <span>Best for:</span>
+                        <span class="badge badge-warning"> Detailed Analysis</span>
+                        <span class="badge badge-warning"> Long Context</span>
+                        <span class="badge badge-purple"> 16GB+ RAM</span>
+                    </div>
+                </div>
+
+                <div class="model-card">
+                    <h4>codellama:7b</h4>
+                    <div class="meta">
+                        <span>Size: <span class="highlight">~4GB</span></span>
+                        <span>Speed: <span class="highlight">~15 tok/s</span></span>
+                    </div>
+                    <p>Specialized for code. Understands programming patterns, can explain code, write tests, and suggest improvements. Great for developers.</p>
+                    <div class="best-for">
+                        <span>Best for:</span>
+                        <span class="badge badge-success"> Code Generation</span>
+                        <span class="badge badge-success"> Bug Fixes</span>
+                        <span class="badge badge-info"> Code Review</span>
+                    </div>
+                </div>
+
+                <div class="model-card">
+                    <h4>llama3.2:1b</h4>
+                    <div class="meta">
+                        <span>Size: <span class="highlight">~1.3GB</span></span>
+                        <span>Speed: <span class="highlight">~60 tok/s</span></span>
+                    </div>
+                    <p>Smallest capable model. Extremely fast, minimal RAM usage. Good for simple tasks, commands, and systems with very limited resources.</p>
+                    <div class="best-for">
+                        <span>Best for:</span>
+                        <span class="badge badge-warning"> Minimal RAM</span>
+                        <span class="badge badge-info"> Simple Tasks</span>
+                        <span class="badge badge-info"> Commands</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">RAM-Based Recommendations</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Your RAM</th>
+                        <th>Recommended Models</th>
+                        <th>Experience</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>8GB</strong></td>
+                        <td>llama3.2:3b, qwen3:1b, phi3:3.8b-mini</td>
+                        <td><span class="badge badge-success">Smooth</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>16GB</strong></td>
+                        <td>+ mistral:7b, codellama:7b</td>
+                        <td><span class="badge badge-success">Excellent</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>32GB+</strong></td>
+                        <td>+ llama3.2:70b (cloud recommended)</td>
+                        <td><span class="badge badge-info">Premium</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
     <section class="architecture" id="architecture">
-        <div class="architecture-content">
+        <div class="container">
             <span class="section-label">Architecture</span>
-            <h2 class="section-title">Clean, Modular Design</h2>
+            <h2 class="section-title">System Architecture</h2>
             <p class="section-desc">Built on proven open-source components with clear separation of concerns.</p>
 
             <div class="architecture-diagram">
@@ -764,159 +1450,152 @@
         </div>
     </section>
 
-    <section class="quickstart" id="quickstart">
-        <span class="section-label">Quick Start</span>
-        <h2 class="section-title">Get Running in Minutes</h2>
-        <p class="section-desc">Three simple steps to your local AI setup.</p>
+    <section id="tools">
+        <div class="container">
+            <span class="section-label">Management</span>
+            <h2 class="section-title">Built-in Utilities</h2>
+            <p class="section-desc">Helpful scripts for managing your AI-Stack deployment.</p>
 
-        <div class="code-block">
-            <div class="code-header">
-                <span>Terminal</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code><span class="comment"># 1. Clone or download the repository</span>
-<span class="command">git clone</span> https://github.com/irfan-ai/ai-stack.git
-<span class="command">cd</span> ai-stack
-
-<span class="comment"># 2. Run the lean setup (downloads models)</span>
-<span class="command">./scripts/setup-lean.sh</span>
-
-<span class="comment"># 3. Start the full stack</span>
-<span class="command">./scripts/setup.sh</span></code></pre>
-        </div>
-
-        <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Choose Your Interface</h3>
-
-        <div class="code-block">
-            <div class="code-header">
-                <span>Three Modes</span>
-            </div>
-            <pre><code><span class="comment"># Terminal Mode (~50MB RAM)</span>
-<span class="command">./scripts/local.sh</span>
-
-<span class="comment"># Simple Web UI - No Docker (~200MB RAM)</span>
-<span class="command">./scripts/web-simple.sh</span>
-
-<span class="comment"># Full WebUI with Docker (~2-3GB RAM)</span>
-<span class="command">./scripts/web.sh</span></code></pre>
-        </div>
-    </section>
-
-    <section class="comparison">
-        <div class="comparison-content">
-            <span class="section-label">Comparison</span>
-            <h2 class="section-title">Choose Your Setup</h2>
-            <p class="section-desc">Different configurations for different needs and hardware.</p>
-
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Setup</th>
-                        <th>RAM Usage</th>
-                        <th>Features</th>
-                        <th>Best For</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Terminal Mode</strong></td>
-                        <td><span class="badge badge-success">~50MB</span></td>
-                        <td>CLI Chat, Ollama models</td>
-                        <td>Power users, quick tasks</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Simple Web UI</strong></td>
-                        <td><span class="badge badge-success">~200MB</span></td>
-                        <td>Browser chat, model selection</td>
-                        <td>Lightweight browsing</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Full Open WebUI</strong></td>
-                        <td><span class="badge badge-warning">~2-3GB</span></td>
-                        <td>RAG, file uploads, cloud models</td>
-                        <td>Complete experience</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section class="tools" id="tools">
-        <span class="section-label">Management Tools</span>
-        <h2 class="section-title">Built-in Utilities</h2>
-        <p class="section-desc">Helpful scripts for managing your AI-Stack deployment.</p>
-
-        <div class="tools-grid">
-            <div class="tool-card">
-                <div class="tool-icon">🔍</div>
-                <div class="tool-info">
-                    <h4>Health Monitor</h4>
-                    <p>Check service status and system resources</p>
-                    <code>./scripts/health.sh -w</code>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🔍</div>
+                    <div class="tool-info">
+                        <h4>Health Monitor</h4>
+                        <p>Check service status and system resources</p>
+                        <code>./scripts/health.sh -w</code>
+                    </div>
                 </div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">📦</div>
-                <div class="tool-info">
-                    <h4>Backup & Restore</h4>
-                    <p>Backup volumes, configs, and restore when needed</p>
-                    <code>./scripts/backup.sh</code>
+                <div class="tool-card">
+                    <div class="tool-icon">✓</div>
+                    <div class="tool-info">
+                        <h4>Config Validator</h4>
+                        <p>Validate .env settings and prerequisites</p>
+                        <code>./scripts/validate.sh</code>
+                    </div>
                 </div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">✓</div>
-                <div class="tool-info">
-                    <h4>Config Validator</h4>
-                    <p>Validate .env settings and prerequisites</p>
-                    <code>./scripts/validate.sh</code>
+                <div class="tool-card">
+                    <div class="tool-icon">📦</div>
+                    <div class="tool-info">
+                        <h4>Backup & Restore</h4>
+                        <p>Backup volumes, configs, and restore when needed</p>
+                        <code>./scripts/backup.sh</code>
+                    </div>
                 </div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">📊</div>
-                <div class="tool-info">
-                    <h4>Model Management</h4>
-                    <p>Download and manage Ollama models</p>
-                    <code>ollama pull llama3.2:3b</code>
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-info">
+                        <h4>Model Management</h4>
+                        <p>Download and manage Ollama models</p>
+                        <code>ollama pull llama3.2:3b</code>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🖥️</div>
+                    <div class="tool-info">
+                        <h4>Docker Logs</h4>
+                        <p>View real-time logs from containers</p>
+                        <code>docker compose logs -f</code>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🔄</div>
+                    <div class="tool-info">
+                        <h4>Restart Services</h4>
+                        <p>Stop and restart all services</p>
+                        <code>docker compose restart</code>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="quickstart" id="models">
-        <span class="section-label">Models</span>
-        <h2 class="section-title">Recommended Models</h2>
-        <p class="section-desc">Optimized models for 8GB systems.</p>
+    <section id="troubleshooting" class="prerequisites">
+        <div class="container">
+            <span class="section-label">Troubleshooting</span>
+            <h2 class="section-title">Common Issues & Solutions</h2>
+            <p class="section-desc">Quick fixes for frequent problems.</p>
 
-        <table class="comparison-table">
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Size</th>
-                    <th>Best For</th>
-                    <th>Speed</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>llama3.2:3b</strong></td>
-                    <td>~2GB</td>
-                    <td>General chat</td>
-                    <td>~30 tok/s</td>
-                </tr>
-                <tr>
-                    <td><strong>qwen3:1b</strong></td>
-                    <td>~1.2GB</td>
-                    <td>Quick tasks, scripts</td>
-                    <td>~50 tok/s</td>
-                </tr>
-                <tr>
-                    <td><strong>phi3:3.8b-mini</strong></td>
-                    <td>~2.4GB</td>
-                    <td>Better quality</td>
-                    <td>~25 tok/s</td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="troubleshoot-grid">
+                <div class="troubleshoot-card">
+                    <h4>⚠️ Out of Memory</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Model won't load or system slows down</p>
+                    <pre><code># Use smaller models
+ollama pull llama3.2:3b
+ollama rm mistral:7b
+
+# Add to ~/.zshrc for memory optimization
+export OLLAMA_MAX_LOADED_MODELS=1
+export OLLAMA_NUM_PARALLEL=1</code></pre>
+                </div>
+
+                <div class="troubleshoot-card">
+                    <h4>⚠️ Port Already in Use</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Services can't start</p>
+                    <pre><code># Check what's using the port
+lsof -i:3000
+lsof -i:8000
+
+# Kill the process or stop the service
+docker compose down
+pkill ollama</code></pre>
+                </div>
+
+                <div class="troubleshoot-card">
+                    <h4>⚠️ Services Won't Start</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Docker containers fail to launch</p>
+                    <pre><code># Check Docker is running
+docker info
+
+# Restart Docker
+# (System Preferences > Docker > Restart)
+
+# Validate configuration
+./scripts/validate.sh
+
+# Fresh start
+docker compose down -v
+./scripts/setup.sh</code></pre>
+                </div>
+
+                <div class="troubleshoot-card">
+                    <h4>⚠️ Can't Login to WebUI</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Authentication issues</p>
+                    <pre><code># Reset to fresh install
+docker compose down -v
+rm .env
+./scripts/setup.sh
+
+# Or check your password
+grep ADMIN_PASSWORD .env</code></pre>
+                </div>
+
+                <div class="troubleshoot-card">
+                    <h4>⚠️ Slow Performance</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Models run slowly</p>
+                    <pre><code># Use Apple Silicon optimized models
+ollama pull llama3.2:3b  # Native ARM
+
+# Check system resources
+./scripts/health.sh
+
+# Enable flash attention (in ~/.zshrc)
+export OLLAMA_FLASH_ATTENTION=1</code></pre>
+                </div>
+
+                <div class="troubleshoot-card">
+                    <h4>⚠️ Model Not Found</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Can't run a specific model</p>
+                    <pre><code># List installed models
+ollama list
+
+# Pull a model
+ollama pull llama3.2:3b
+
+# Check available models
+ollama list</code></pre>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
@@ -924,9 +1603,9 @@
             <div class="footer-logo">🤖 AI-Stack</div>
             <p style="color: var(--text-secondary); margin-bottom: 1rem;">A lean, local AI interface infrastructure</p>
             <div class="footer-links">
-                <a href="https://github.com/irfan-ai/ai-stack">GitHub</a>
-                <a href="https://github.com/irfan-ai/ai-stack/issues">Issues</a>
-                <a href="https://github.com/irfan-ai/ai-stack/discussions">Discussions</a>
+                <a href="https://github.com/irfancode/ai-stack">GitHub</a>
+                <a href="https://github.com/irfancode/ai-stack/issues">Issues</a>
+                <a href="https://github.com/irfancode/ai-stack/discussions">Discussions</a>
             </div>
             <p class="footer-copy">MIT License • Built with ❤️ for AI enthusiasts</p>
         </div>
@@ -949,19 +1628,6 @@
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        });
-
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.feature-card, .tool-card').forEach(el => {
-            observer.observe(el);
         });
     </script>
 </body>
